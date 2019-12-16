@@ -1,11 +1,15 @@
 const express = require('express');
 
-const router = express.Router(); // Création du router
+const router = express.Router({ mergeParams: true });
 const fakeComments = require('../data/comments');
 
 
 router.get('/', (req, res) => { // utilisation de router à la place de app modification du nom de la route url
-  res.json(fakeComments);
+  // If we forget { mergeParams: true }, req.params.postId will be `undefined`
+  const postId = Number(req.params.postId);
+  // Keep only comments whose post_id matches the postId parameter
+  const postComments = fakeComments.filter((comment) => comment.post_id === postId);
+  res.json(postComments);
 });
 
 

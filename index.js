@@ -3,8 +3,6 @@ const express = require('express');
 // const posts = require('./routes/posts'); // Déplacer dans routes/index
 const api = require('./routes'); // Dans notre cas, pas besoin de préciser .routes/index
 // car NodeJs va automatiquement chercher un index.js
-
-
 const app = express();
 const port = 8000;
 
