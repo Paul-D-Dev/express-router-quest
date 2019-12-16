@@ -12,5 +12,10 @@ router.get('/', (req, res) => { // utilisation de router à la place de app modi
   res.json(postComments);
 });
 
+router.get('/all', (req, res) => {
+
+  res.json(fakeComments);
+});
+
 
 module.exports = router; // permet d'importer le router dans un autre fichier

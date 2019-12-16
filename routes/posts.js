@@ -6,7 +6,12 @@ const fakePosts = require('../data/posts'); // Importer des fichiers contenant l
 const comments = require('./comments');
 
 router.get('/', (req, res) => {
-  res.json(fakePosts);
+  const idTag = Number(req.params.idTag);
+  const tagPosts = fakePosts.filter((post) => post.tag_id === idTag);
+  console.log(idTag);
+  console.log(tagPosts);
+
+  res.json(tagPosts);
 });
 
 router.get('/:id', (req, res) => {
@@ -22,7 +27,7 @@ router.get('/:id', (req, res) => {
   return res.json(foundPost);
 });
 
-router.use('/:postId/comment', comments); // run node index.js   http://localhost:8000/api/posts/1/comment
+router.use('/:postId/comments', comments); // run node index.js   http://localhost:8000/api/posts/1/comment
 
 
 module.exports = router; // permet d'importer le router dans un autre fichier
